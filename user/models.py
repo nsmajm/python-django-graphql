@@ -7,8 +7,8 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255, blank=True, null=True)
     password = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)  # default
-    updated_at = models.DateTimeField(auto_now=True)  # default  value
+    created_at = models.DateTimeField(auto_now_add=True, null=True)  # default
+    updated_at = models.DateTimeField(auto_now=True, null=True)  # default  value
 
     def __str__(self):
         return self.name
