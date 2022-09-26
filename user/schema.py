@@ -1,15 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
-from .models import User
-
-
-class UserType(DjangoObjectType):
-    class Meta:
-        model = User
-        fields = ("id", "name", "email", "phone_number", "created_at", "updated_at")
-
-    def __str__(self):
-        return self
+from .user_types import UserType
+from .mutation import CreateUserMutation,UpdateUserMutation
 
 
 class Query(graphene.ObjectType):
@@ -23,4 +15,9 @@ class Query(graphene.ObjectType):
         return User.objects.get(name__contains=name)
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(graphene.ObjectType):
+    create_user = CreateUserMutation.Field()
+    update_user = UpdateUserMutation.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
