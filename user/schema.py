@@ -2,7 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from .user_types import UserType
 from .mutation import CreateUserMutation,UpdateUserMutation
-
+from .models import User
 
 class Query(graphene.ObjectType):
     all_users = graphene.List(UserType)
